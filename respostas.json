@@ -1,0 +1,14 @@
+{
+  "olá": "Olá! Como posso te ajudar?",
+  "tudo bem": "Tudo ótimo, obrigado! E você?",
+  "qual o seu nome": "Eu sou um chatbot, não tenho um nome. Mas pode me chamar de Bot.",
+  "o que você faz": "Fui programado para responder perguntas básicas e conversar. Qual é a sua dúvida?",
+  "tchau": "Até mais! Foi um prazer conversar com você.",
+  "como funciona a programação": "A programação é a arte de dar instruções a um computador. Usamos linguagens de programação, como Python ou JavaScript, para escrever essas instruções e criar softwares.",
+  "o que é python": "Python é uma linguagem de programação de alto nível, interpretada, de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. É muito popular para desenvolvimento web, análise de dados e inteligência artificial.",
+  "o que é inteligencia artificial": "Inteligência Artificial (IA) é a área da ciência da computação que se dedica a criar sistemas capazes de simular a capacidade humana de raciocinar, aprender, resolver problemas e tomar decisões.",
+  "o que é um algoritmo": "Um algoritmo é uma sequência finita de passos para resolver um problema ou realizar uma tarefa. É a 'receita' por trás de qualquer programa de computador.",
+  "me conte uma piada": "Onde o programador esconde o dinheiro? No código-fonte, porque ninguém o acha.",
+  "quem é você": "Sou um modelo de linguagem treinado pelo Google, com a capacidade de processar e entender texto.",
+  "qual a sua idade": "Não tenho uma idade, pois sou um programa de computador."
+}

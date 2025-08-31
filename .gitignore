@@ -1,0 +1,19 @@
+Diretórios de ambiente virtual
+venv/
+env/
+
+Arquivos gerados por Python
+pycache/
+*.pyc
+*.pyo
+
+IDEs e editores de código (ex: VS Code, PyCharm)
+.vscode/
+.idea/
+
+Arquivos de log e cache
+*.log
+.cache/
+
+Arquivos de dados confidenciais (se houver no futuro)
+.env
