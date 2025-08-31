@@ -19,7 +19,7 @@ O projeto é dividido em Frontend e Backend.
 ## Estrutura do Projeto
 
 A estrutura de pastas segue as boas práticas de um projeto Flask, separando os arquivos de código, templates e arquivos estáticos.
-
+````
 PYTHON/
 ├── templates/
 │   └── chatbot_interface.html
@@ -29,7 +29,7 @@ PYTHON/
 ├── app.py
 ├── chatbot.py
 └── respostas.json
-
+````
 
 ## Instalação e Execução
 
