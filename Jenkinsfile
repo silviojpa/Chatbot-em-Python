@@ -9,23 +9,23 @@ pipeline {
         }
 
         stage('Build e Rodar com Docker') {
-    steps {
-        script {
-            // Define o nome do seu compose file
-            def composeFile = "docker-compose.yml"
-
-            // Para evitar conflitos de porta, para e remove os containers anteriores, se existirem
-            // O --rmi all remove as imagens criadas pelo compose
-            sh "docker compose -f ${composeFile} down --rmi all || true"
-
-            // Constrói e roda os containers em segundo plano (-d)
-            // O docker-compose build é incluído automaticamente pelo "up"
-            sh "docker compose -f ${composeFile} up --build -d"
+            steps {
+                script {
+                    def composeFile = "docker-compose.yml"
+                    def containerName = "chatbot-container"
+        
+                    // Adicionado para garantir que o container existente seja removido
+                    sh "docker stop ${containerName} || true"
+                    sh "docker rm ${containerName} || true"
+        
+                    // Agora, com o ambiente limpo, o docker-compose pode subir
+                    sh "docker-compose -f ${composeFile} up --build -d"
                 }
             }
         }
     }
 }
+
 
 
 
