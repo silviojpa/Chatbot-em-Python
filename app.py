@@ -1,5 +1,5 @@
-from flask import Flask, request, render_template, jsonify
-from prometheus_client import make_wsgi_app, Counter, Histogram
+from flask import Flask, request, render_template, jsonify, Response
+from prometheus_client import make_wsgi_app, Counter, Histogram, generate_latest
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
