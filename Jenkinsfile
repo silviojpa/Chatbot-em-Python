@@ -19,12 +19,13 @@ pipeline {
                     sh "docker rm ${containerName} || true"
         
                     // Agora, com o ambiente limpo, o docker-compose pode subir
-                    sh "docker-compose -f ${composeFile} up --build -d"
+                    sh "docker compose -f ${composeFile} up --build -d"
                 }
             }
         }
     }
 }
+
 
 
 
