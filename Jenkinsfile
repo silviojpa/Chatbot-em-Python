@@ -9,26 +9,23 @@ pipeline {
         }
 
         stage('Build e Rodar com Docker') {
-            steps {
-                script {
-                    // Define o nome da sua imagem Docker
-                    def imageName = 'chatbot-flask'
-                    def containerName = 'chatbot-container'
+    steps {
+        script {
+            // Define o nome do seu compose file
+            def composeFile = "docker-compose.yml"
 
-                    // Para evitar conflitos de porta, pare e remova o container anterior se ele existir
-                    sh "docker stop ${containerName} || true"
-                    sh "docker rm ${containerName} || true"
+            // Para evitar conflitos de porta, para e remove os containers anteriores, se existirem
+            // O --rmi all remove as imagens criadas pelo compose
+            sh "docker-compose -f ${composeFile} down --rmi all || true"
 
-                    // Constrói a imagem Docker a partir do Dockerfile
-                    sh "docker build -t ${imageName} ."
-
-                    // Roda o container em segundo plano (-d)
-                    // Mapeia a porta 5000 do container para a porta 5000 da máquina host
-                    sh "docker run -d --name ${containerName} -p 5000:5000 ${imageName}"
+            // Constrói e roda os containers em segundo plano (-d)
+            // O docker-compose build é incluído automaticamente pelo "up"
+            sh "docker-compose -f ${composeFile} up --build -d"
                 }
             }
         }
     }
 }
+
 
 
