@@ -4,32 +4,29 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clona o seu repositório Git.
-                git url: 'https://github.com/silviojpa/Chatbot-em-Python.git'
+                git url: 'URL_DO_SEU_REPOSITORIO_AQUI'
             }
         }
 
-        stage('Build & Run') {
+        stage('Build e Rodar com Docker') {
             steps {
-                // Cria e ativa o ambiente virtual, e instala as dependências.
-                // O comando 'source' é o padrão para shells no Ubuntu.
-                sh '''
-                python3 -m venv venv
-                source venv/bin/activate
-                pip install Flask scikit-learn numpy nltk
-                '''
-            }
-        }
+                script {
+                    // Define o nome da sua imagem Docker
+                    def imageName = 'chatbot-flask'
+                    def containerName = 'chatbot-container'
 
-        stage('Execute o Chatbot') {
-            steps {
-                // Inicia o servidor do Flask.
-                sh '''
-                source venv/bin/activate
-                python3 app.py
-                '''
+                    // Para evitar conflitos de porta, pare e remova o container anterior se ele existir
+                    sh "docker stop ${containerName} || true"
+                    sh "docker rm ${containerName} || true"
+
+                    // Constrói a imagem Docker a partir do Dockerfile
+                    sh "docker build -t ${imageName} ."
+
+                    // Roda o container em segundo plano (-d)
+                    // Mapeia a porta 5000 do container para a porta 5000 da máquina host
+                    sh "docker run -d --name ${containerName} -p 5000:5000 ${imageName}"
+                }
             }
         }
     }
-
 }
