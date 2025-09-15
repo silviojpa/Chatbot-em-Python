@@ -1,4 +1,6 @@
 from flask import Flask, request, render_template, jsonify
+from prometheus_client import make_wsgi_app, Counter, Histogram
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -61,6 +63,13 @@ def get_response():
     # Retorna a resposta do bot em formato JSON
     return jsonify({"response": bot_response})
 
+# --- Adicionando Rota para Métricas do Prometheus ---
+# Rota para expor as métricas. O Prometheus irá coletar daqui.
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), mimetype="text/plain")
+
+# --- Modificação do Ponto de Entrada para usar Gunicorn com Prometheus ---
 if __name__ == '__main__':
     # Roda o servidor. debug=True para reiniciar automaticamente após mudanças.
     app.run(debug=True)
