@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clona o seu repositório Git.
-                git url: 'URL_DO_SEU_REPOSITORIO_AQUI'
+                git url: 'https://github.com/silviojpa/Chatbot-em-Python.git'
             }
         }
 
@@ -31,4 +31,5 @@ pipeline {
             }
         }
     }
+
 }
