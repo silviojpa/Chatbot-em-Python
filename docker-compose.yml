@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  # Serviço para a sua aplicação Flask/Chatbot
+  chatbot-flask:
+    build: .
+    container_name: chatbot-container
+    ports:
+      - "5000:5000"
+    networks:
+      - monitoramento-net
+
+  # Serviço para o Prometheus
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus-container
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoramento-net
+
+  # Serviço para o Grafana
+  grafana:
+    image: grafana/grafana
+    container_name: grafana-container
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoramento-net
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+networks:
+  monitoramento-net:
+    driver: bridge
